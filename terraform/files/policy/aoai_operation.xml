@@ -1,0 +1,30 @@
+<!--
+    - Policies are applied in the order they appear.
+    - Position <base/> inside a section to inherit policies from the outer scope.
+    - Comments within policies are not preserved.
+-->
+<!-- Add policies as children to the <inbound>, <outbound>, <backend>, and <on-error> elements -->
+<policies>
+    <!-- Throttle, authorize, validate, cache, or transform the requests -->
+    <inbound>
+        <authentication-managed-identity resource="https://cognitiveservices.azure.com" />
+        <include-fragment fragment-id="${backend-aoai}" />
+        <azure-openai-emit-token-metric namespace="AzureOpenAI">
+            <dimension name="API ID" />
+            <dimension name="Subscription ID" />
+        </azure-openai-emit-token-metric>
+        <azure-openai-token-limit tokens-per-minute="20000" counter-key="@(context.Subscription.Id)" estimate-prompt-tokens="true" tokens-consumed-header-name="consumed-tokens" remaining-tokens-header-name="remaining-tokens" />
+    </inbound>
+    <!-- Control if and how the requests are forwarded to services  -->
+    <backend>
+        <include-fragment fragment-id="${retry}" />
+    </backend>
+    <!-- Customize the responses -->
+    <outbound>
+        <base />
+    </outbound>
+    <!-- Handle exceptions and customize error responses  -->
+    <on-error>
+        <base />
+    </on-error>
+</policies>

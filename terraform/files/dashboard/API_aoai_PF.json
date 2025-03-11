@@ -1,0 +1,1451 @@
+{
+  "lenses": {
+    "0": {
+      "order": 0,
+      "parts": {
+        "0": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              },
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "id": "${apim_id}"
+                        },
+                        "name": "Capacity",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.apimanagement/service",
+                        "metricVisualization": {
+                          "displayName": "Capacity"
+                        }
+                      }
+                    ],
+                    "title": "平均 Capacity 対象 ${apim_name}",
+                    "titleKind": 1,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideHoverCard": false,
+                        "hideLabelNames": true
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 86400000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "id": "${apim_id}"
+                        },
+                        "name": "Capacity",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.apimanagement/service",
+                        "metricVisualization": {
+                          "displayName": "Capacity"
+                        }
+                      }
+                    ],
+                    "title": "APIM(${apim_name}) 平均 Capacity",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideHoverCard": false,
+                        "hideLabelNames": true
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "1": {
+          "position": {
+            "x": 6,
+            "y": 0,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${appinsights_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "113e1ab4-9a8f-4521-bb15-0ad45218729d",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "PT12H",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "dependencies\n| where operation_Name contains \"openai;rev\" and type == \"Backend\"\n| extend aoaibackend = split(split(target, \"/\", 2)[0], \".\", 0)[0]\n| extend second = duration/1000\n| summarize round(avg(second),2) by tostring(aoaibackend),bin(timestamp, 1h)\n| render timechart \n\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "testinsignts",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "avg_second",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "aoaibackend",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "PartTitle": "AOAIごとの1時間あたりの平均応答時間（秒）",
+                "PartSubTitle": "APIM(${apim_name})"
+              }
+            }
+          }
+        },
+        "2": {
+          "position": {
+            "x": 0,
+            "y": 4,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${apim_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "412b815b-6e86-45c2-a141-a44369127337",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "value": {
+                  "scope": "hierarchy"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "ApiManagementGatewayLogs\n//| project CallerIpAddress, TimeGenerated\n|summarize response_429_count = countif(ResponseCode == \"429\") by bin(TimeGenerated,1h)\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "AnalyticsGrid",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${apim_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "ApiManagementGatewayLogs\n| summarize response_429_count = countif(ResponseCode == \"429\") by bin(TimeGenerated,1h)\n| render timechart \n\n",
+                "ControlType": "FrameControlChart",
+                "SpecificChart": "Line",
+                "PartTitle": "1時間あたりのResponse 429の回数",
+                "PartSubTitle": "APIM(${apim_name})",
+                "Dimensions": {
+                  "xAxis": {
+                    "name": "TimeGenerated",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "response_429_count",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "LegendOptions": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                }
+              }
+            }
+          }
+        },
+        "3": {
+          "position": {
+            "x": 6,
+            "y": 4,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${appinsights_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "47caa8df-1a72-41d5-9113-74e8b6d5213d",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where client_Type != \"Browser\"\n| where success == false\n| where operation_Name contains \"openai;rev\" and resultCode == \"429\"\n| summarize 429count=count() by operation_Name, bin(timestamp, 1h)\n//| sort by _count desc\n| render timechart \n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "testinsignts",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "429count",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "operation_Name",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "requests\n| where client_Type != \"Browser\"\n| where success == false\n| where operation_Name contains \"openai;rev\" and resultCode == \"429\"\n| summarize response_429_count=count() by operation_Name, bin(timestamp, 1h)\n| render timechart \n\n",
+                "PartTitle": "1時間あたりのOpenAI APIのオペレーションごとのResponse 429の回数",
+                "PartSubTitle": "APIM(${apim_name})",
+                "Dimensions": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "response_429_count",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "operation_Name",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                }
+              }
+            }
+          }
+        },
+        "4": {
+          "position": {
+            "x": 12,
+            "y": 4,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${appinsights_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "14727a97-793f-4265-839c-95c1622dbf92",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P7D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where operation_Name contains \"openai;rev\"\n| extend int_resultCode = toint(resultCode)\n| where int_resultCode >= 400 or int_resultCode >= 500\n| summarize responsecode_count=count() by resultCode,bin(timestamp, 1h)\n| render timechart \n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "testinsignts",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "responsecode_count",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "resultCode",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "requests\n| where operation_Name contains \"openai;rev\"\n| extend int_resultCode = toint(resultCode)\n| where int_resultCode >= 400 or int_resultCode >= 500\n| summarize error_count=count() by resultCode,bin(timestamp, 1h)\n| render timechart \n\n",
+                "PartTitle": "1時間あたりのOpenAI APIのエラーコードごとの回数",
+                "PartSubTitle": "APIM(${apim_name})",
+                "Dimensions": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "error_count",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "resultCode",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                }
+              }
+            }
+          }
+        },
+        "5": {
+          "position": {
+            "x": 0,
+            "y": 8,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${appinsights_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "1046aff4-863a-4032-8612-a7a38024631b",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "customMetrics\n| where name == \"Prompt Tokens\"\n| extend parse_customDimensions = parse_json(customDimensions)\n| where tostring(parse_customDimensions[\"API ID\"]) == \"openai\"\n| summarize requestcount=count() by tostring(parse_customDimensions[\"Subscription ID\"]), bin(timestamp,1h)\n| render timechart \n\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "testinsignts",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "requestcount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "parse_customDimensions_Subscription ID",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "customMetrics\n| where name == \"Prompt Tokens\"\n| extend parse_customDimensions = parse_json(customDimensions)\n| where tostring(parse_customDimensions[\"API ID\"]) == \"openai\"\n| summarize sum_prompt_tokens=sum(value) by tostring(parse_customDimensions[\"Subscription ID\"]), bin(timestamp,1m)\n| render timechart \n\n",
+                "PartTitle": "サブスクリプションごとの1分間あたりの合計プロンプトトークン数",
+                "PartSubTitle": "APIM(${apim_name})",
+                "Dimensions": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_prompt_tokens",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "parse_customDimensions_Subscription ID",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                }
+              }
+            }
+          }
+        },
+        "6": {
+          "position": {
+            "x": 6,
+            "y": 8,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${appinsights_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "674e2fe9-33ff-4ef9-a47c-6e6b3121d3ec",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "customMetrics\n| where name == \"Completion Tokens\"\n| extend parse_customDimensions = parse_json(customDimensions)\n| where tostring(parse_customDimensions[\"API ID\"]) == \"openai\"\n| summarize sum_tokens=sum(value) by tostring(parse_customDimensions[\"Subscription ID\"]), bin(timestamp,1m)\n| render timechart \n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "testinsignts",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_tokens",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "parse_customDimensions_Subscription ID",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "customMetrics\n| where name == \"Completion Tokens\"\n| extend parse_customDimensions = parse_json(customDimensions)\n| where tostring(parse_customDimensions[\"API ID\"]) == \"openai\"\n| summarize sum_completion_tokens=sum(value) by tostring(parse_customDimensions[\"Subscription ID\"]), bin(timestamp,1m)\n| render timechart \n\n",
+                "PartTitle": "サブスクリプションごとの1分間あたりの合計完了トークン数",
+                "PartSubTitle": "APIM(${apim_name})",
+                "Dimensions": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_completion_tokens",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "parse_customDimensions_Subscription ID",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                }
+              }
+            }
+          }
+        },
+        "7": {
+          "position": {
+            "x": 12,
+            "y": 8,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${appinsights_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "12e3b1ce-7247-47cf-9322-7752019c5ab3",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "customMetrics\n| where name == \"Total Tokens\"\n| extend parse_customDimensions = parse_json(customDimensions)\n| where tostring(parse_customDimensions[\"API ID\"]) == \"openai\"\n| summarize sum_tokens=sum(value) by tostring(parse_customDimensions[\"Subscription ID\"]), bin(timestamp,1m)\n| render timechart \n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "testinsignts",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_tokens",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "parse_customDimensions_Subscription ID",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "customMetrics\n| where name == \"Total Tokens\"\n| extend parse_customDimensions = parse_json(customDimensions)\n| where tostring(parse_customDimensions[\"API ID\"]) == \"openai\"\n| summarize sum_total_tokens=sum(value) by tostring(parse_customDimensions[\"Subscription ID\"]), bin(timestamp,1m)\n| render timechart \n\n",
+                "PartTitle": "サブスクリプションごとの1分間あたりの合計トークン数",
+                "PartSubTitle": "APIM(${apim_name})",
+                "Dimensions": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_total_tokens",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "parse_customDimensions_Subscription ID",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                }
+              }
+            }
+          }
+        },
+        "8": {
+          "position": {
+            "x": 0,
+            "y": 12,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${apim_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "2d084740-5ae7-47d8-b813-5dd552256129",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "value": {
+                  "scope": "hierarchy"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "ApiManagementGatewayLogs\n| where ApiId == \"openai\" and ApimSubscriptionId != \"\"\n| summarize requestcount = count() by bin(TimeGenerated,1h), ApimSubscriptionId\n| render timechart \n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${apim_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "TimeGenerated",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "requestcount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "ApimSubscriptionId",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "PartTitle": "サブスクリプションごとの1時間あたりのリクエスト数",
+                "PartSubTitle": "APIM(${apim_name})"
+              }
+            }
+          }
+        },
+        "9": {
+          "position": {
+            "x": 6,
+            "y": 12,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${apim_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "154f2b38-60b8-4200-8790-013ccb123d51",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "value": {
+                  "scope": "hierarchy"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "ApiManagementGatewayLogs\n| where ApiId != \"\"\n| summarize requestcount = count() by bin(TimeGenerated,1h), ApiId\n| render timechart \n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${apim_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "TimeGenerated",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "requestcount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "ApiId",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "PartTitle": "APIごとの1時間あたりのリクエスト数",
+                "PartSubTitle": "APIM(${apim_name})"
+              }
+            }
+          }
+        },
+        "10": {
+          "position": {
+            "x": 12,
+            "y": 12,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": ["${apim_id}"]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "14214c57-71be-4744-8a15-06eaba1195c4",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "value": {
+                  "scope": "hierarchy"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "ApiManagementGatewayLogs\n| where ApiId == \"openai\"\n| extend opemaimodel = split(split(tostring(Url), \"/deployments/\", 1)[0], \"/\", 0)[0]\n| where opemaimodel != \"\" and ResponseCode != \"404\"\n| summarize requestcount = count() by bin(TimeGenerated,1h), tostring(opemaimodel)\n| render timechart \n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${apim_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "TimeGenerated",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "requestcount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "opemaimodel",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "PartTitle": "AIモデルごとの1時間あたりのリクエスト数",
+                "PartSubTitle": "APIM(${apim_name})"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "model": {
+      "timeRange": {
+        "value": {
+          "relative": {
+            "duration": 24,
+            "timeUnit": 1
+          }
+        },
+        "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+      },
+      "filterLocale": {
+        "value": "ja-jp"
+      },
+      "filters": {
+        "value": {
+          "MsPortalFx_TimeRange": {
+            "model": {
+              "format": "local",
+              "granularity": "1d",
+              "relative": "30d"
+            },
+            "displayCache": {
+              "name": "現地時刻",
+              "value": "過去 30 日"
+            },
+            "filteredPartIds": [
+              "StartboardPart-MonitorChartPart-f409d55d-7b71-4764-8c25-c3a24f30500e",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f305010",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f305012",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f305014",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f305016",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f305018",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f30501a",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f30501c",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f30501e",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f305020",
+              "StartboardPart-LogsDashboardPart-f409d55d-7b71-4764-8c25-c3a24f305022"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

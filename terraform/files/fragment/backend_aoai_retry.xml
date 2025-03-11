@@ -1,0 +1,17 @@
+<!--
+    IMPORTANT:
+    - Policy fragment are included as-is whenever they are referenced.
+    - If using variables. Ensure they are setup before use.
+    - Copy and paste your code here or simply start coding
+-->
+<fragment>
+	<retry condition="@(context.Response.StatusCode == 429 || context.Response.StatusCode >= 500)" count="5" interval="1" delta="1" max-interval="8" first-fast-retry="false">
+		<!-- Failover logic below - uncomment to retry on secondary backend -->
+		<choose>
+			<when condition="@(context.Response.StatusCode == 429 || context.Response.StatusCode >= 500)">
+				<set-backend-service backend-id="${secondary-aoai}" />
+			</when>
+		</choose>
+		<forward-request buffer-request-body="true" fail-on-error-status-code="true" buffer-response="false" timeout="300" />
+	</retry>
+</fragment>
