@@ -1,0 +1,26 @@
+<!--
+    IMPORTANT:
+    - Policy fragment are included as-is whenever they are referenced.
+    - If using variables. Ensure they are setup before use.
+    - Copy and paste your code here or simply start coding
+-->
+<fragment>
+	<set-variable name="urlId" value="@(new Random(context.RequestId.GetHashCode()).Next(1, 101))" />
+	<choose>
+		<when condition="@(context.Variables.GetValueOrDefault<int>("urlId") < 51)">
+			<set-backend-service backend-id="${primary-aoai}" />
+		</when>
+		<when condition="@(context.Variables.GetValueOrDefault<int>("urlId") > 50)">
+			<set-backend-service backend-id="${secondary-aoai}" />
+		</when>
+		<otherwise>
+			<return-response>
+				<set-status code="500" reason="InternalServerError" />
+				<set-header name="Microsoft-Azure-Api-Management-Correlation-Id" exists-action="override">
+					<value>@{return Guid.NewGuid().ToString();}</value>
+				</set-header>
+				<set-body>A gateway-related error occurred while processing the request.</set-body>
+			</return-response>
+		</otherwise>
+	</choose>
+</fragment>
